@@ -1,7 +1,6 @@
 package com.example.terminalfinance.presentation
 
 import android.icu.util.Calendar
-import android.util.Log
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.rememberTransformableState
@@ -144,7 +143,7 @@ private fun Chart(
 
     val currentState = terminalState.value
 
-    val trasformableState =
+    val transformableState =
         rememberTransformableState { zoomChange, panChange, _ -> //считывание зума и скрола
             val visibleBarsCount = (terminalState.value.visibleBarsCount / zoomChange).roundToInt()
                 .coerceIn(MIN_VISIBLE_BARS_COUNT, terminalState.value.barList.size)
@@ -173,7 +172,7 @@ private fun Chart(
             bottom = 32.dp,
             end = 32.dp
         )
-        .transformable(trasformableState)
+        .transformable(transformableState)
         .onSizeChanged {
             onTerminalStateChanged(
                 currentState.copy(
